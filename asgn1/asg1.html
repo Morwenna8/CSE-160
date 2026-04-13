@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change a point color</title>
+  </head>
+
+  <body onload="main()">
+    <h1>Paint a picture!</h1>
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    
+    <p>
+    <button type="button" id="green">Green</button>
+    <button type="button" id="red">Red</button>
+    <button type="button" id="clearButton">Clear</button>
+    <button type="button" id="painting">Painting</button>
+    <p>
+    <button type="button" id="point">Point</button>
+    <button type="button" id="triangle">Triangle</button>
+    <button type="button" id="circle">Circle</button>
+    <button type="button" id="splash">Splash!</button>
+
+
+    <p>
+    Red <input type="range" min="0" max="100" value="100" class="slider" id="redSlide">
+    <p>
+    Green <input type="range" min="0" max="100" value="0" class="slider" id="greenSlide">
+    <p>
+    Blue <input type="range" min="0" max="100" value="0" class="slider" id="blueSlide">
+    <p>
+    Size <input type="range" min="5" max="40" value="0" class="slider" id="sizeSlide">
+    <p>
+    Segments <input type="range" min="3" max="100" value="10" class="slider" id="segmentSlide">
+
+    <p>Welcome to my paint program!
+        <br>My reference drawing for Arnold the dog is below. My initials are MY.
+        <br><br>I added the extra element of the "Splash!" feature, which introduces a
+        <br>new type of paint brush texture for the artist to paint with!
+        <br><br>Additionally I edited the "painting" button so that when my drawing is
+        <br>on the canvas, clicking the button will hide it so that the artist doesn't
+        <br>have to reload the entire page in order to see their whole painting.
+    </p>
+    
+    <br>
+    <img src="arnoldTheDog.jpeg" width="400" height="260" alt="dog">
+
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="drawing.js"></script>
+    <script src="splash.js"></script>
+    <script src="circle.js"></script>
+    <script src="triangle.js"></script>
+    <script src="points.js"></script>
+    <script src="asg1.js"></script>
+  </body>
+</html>
