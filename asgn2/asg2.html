@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blocky the Giraffe!</title>
+  </head>
+
+  <body onload="main()">
+    <h1>Meet Blocky the Giraffe! :)</h1>
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <p id="object"> XXX </p>
+
+    <p>
+    Camera Angle (side to side) <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlide">
+    <p>
+    Camera Angle (up and down) <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlideY">
+
+    
+    <p>
+    Walk <input type="range" min="-45" max="45" value="0" class="slider" id="walkSlide">
+    <p>Walking Animation:
+      <button type="button" id="animateWalkOn">ON</button>
+      <button type="button" id="animateWalkOff">OFF</button>
+    
+    <p>
+      Neck Bottom <input type="range" min="-45" max="45" value="0" class="slider" id="neckBotSlide">
+    <p>
+      Neck Middle <input type="range" min="-45" max="45" value="0" class="slider" id="neckMidSlide">
+    <p>
+      Neck Top <input type="range" min="-45" max="45" value="0" class="slider" id="neckTopSlide">
+    
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="lib/cuon-matrix.js"></script>
+    <script src="drawing.js"></script>
+    <script src="cylinder.js"></script>
+    <script src="cube.js"></script>
+    <script src="splash.js"></script>
+    <script src="circle.js"></script>
+    <script src="triangle.js"></script>
+    <script src="points.js"></script>
+    <script src="asg2.js"></script>
+  </body>
+</html>
