@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cloud Catcher!</title>
+  </head>
+
+  <body onload="main()">
+    <h1>Play Cloud Catcher!</h1>
+    <p>
+    <div id="object2" style="color:black; position:relative;"></div>
+    </p>
+
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <p id="object"> XXX </p>
+
+    <p>
+      <button type="button" id="normalOn">Normals ON</button>
+      <button type="button" id="normalOff">Normals OFF</button>
+    </p>
+
+    <p>
+      <button type="button" id="lightOn">Light ON</button>
+      <button type="button" id="lightOff">Light OFF</button>
+    </p>
+    <button type="button" id="spotlightOn">Spotlight ON</button>
+    <button type="button" id="spotlightOff">Spotlight OFF</button>
+
+    <p>
+      Light X <input type="range" min="-250" max="250" value="0" class="slider" id="lightSlideX">
+      Light Y <input type="range" min="-250" max="250" value="100" class="slider" id="lightSlideY">
+      Light Z <input type="range" min="-250" max="250" value="200" class="slider" id="lightSlideZ">
+    </p>
+
+    <p>
+      - lighting!
+    <p> 
+
+    </p>
+
+    <p>
+    Camera Angle (side to side) <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlide">
+    <p>
+    Camera Angle (up and down) <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlideY">
+
+    <p>
+    Walk <input type="range" min="-45" max="45" value="0" class="slider" id="walkSlide">
+    <p>Walking Animation:
+      <button type="button" id="animateWalkOn">ON</button>
+      <button type="button" id="animateWalkOff">OFF</button>
+    
+    <p>
+      Neck Bottom <input type="range" min="-45" max="45" value="0" class="slider" id="neckBotSlide">
+    <p>
+      Neck Middle <input type="range" min="-45" max="45" value="0" class="slider" id="neckMidSlide">
+    <p>
+      Neck Top <input type="range" min="-45" max="45" value="0" class="slider" id="neckTopSlide">
+    
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="lib/cuon-matrix.js"></script>
+    <!-- <script src="sky_for_160.jpg"></script> -->
+    <img src="sky_for_160.jpg" style="display:none;"></img>
+    <img src="jup_160.jpg" style="display:none;"></img>
+    <img src="paisley_160.jpg" style="display:none;"></img>
+    <img src="QuickMapleOptimized.mtl" style="display:none;"></img>
+    <img src="QuickMapleOptimized.obj" style="display:none;"></img>
+
+    <!-- <script src="drawing.js"></script> -->
+    <script src="camera.js"></script>
+    <script src="cylinder.js"></script>
+    <script src="cube.js"></script>
+    <script src="sphere.js"></script>
+    <!-- <script src="splash.js"></script> -->
+    <!-- <script src="circle.js"></script> -->
+    <script src="triangle.js"></script>
+    <!-- <script src="points.js"></script> -->
+    <script src="asg4.js"></script>
+  </body>
+</html>
+
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Blocky the Giraffe!</title>
+  </head>
+
+  <body onload="main()">
+    <h1>Lighting:)</h1>
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <p id="object"> XXX </p>
+
+    <p>
+    <button type="button" id="normalOn">Normals ON</button>
+    <button type="button" id="normalOff">Normals OFF</button>
+    </p>
+
+    <p>
+    Camera Angle (side to side) <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlide">
+    <p>
+    Camera Angle (up and down) <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlideY">
+
+    
+    <p>
+    Walk <input type="range" min="-45" max="45" value="0" class="slider" id="walkSlide">
+    <p>Walking Animation:
+      <button type="button" id="animateWalkOn">ON</button>
+      <button type="button" id="animateWalkOff">OFF</button>
+    
+    <p>
+      Neck Bottom <input type="range" min="-45" max="45" value="0" class="slider" id="neckBotSlide">
+    <p>
+      Neck Middle <input type="range" min="-45" max="45" value="0" class="slider" id="neckMidSlide">
+    <p>
+      Neck Top <input type="range" min="-45" max="45" value="0" class="slider" id="neckTopSlide">
+    
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="lib/cuon-matrix.js"></script>
+    <script src="drawing.js"></script>
+    <script src="cylinder.js"></script>
+    <script src="cube.js"></script>
+    <script src="splash.js"></script>
+    <script src="circle.js"></script>
+    <script src="triangle.js"></script>
+    <script src="points.js"></script>
+    <script src="asg4.js"></script>
+  </body>
+</html> -->
