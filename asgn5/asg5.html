@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@v0.184.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@v0.184.0/examples/jsm/"
+        }
+      }
+    </script>
+
+    <!-- <script type="module">
+      import * as THREE from 'three';
+      function main() {
+        const canvas = document.querySelector('#c');
+        const renderer = new THREE.WebGLRenderer({antialias: true, canvas});
+        // ...
+      }
+    </script> -->
+    <script type="module" src="asg5.js"></script>
+
+    <style>
+        .split {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+        }
+        .split > div {
+          width: 100%;
+          height: 100%;
+        }
+    body {
+        margin: 0;
+    }
+    #webgl {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: url(360_background.jpg) no-repeat center center;
+        background-size: cover;
+    }
+
+    /* #object2 {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 100;
+        background: rgba(0,0,0,0.6);
+        color: white;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-family: sans-serif;
+        font-size: 14px;
+        pointer-events: none;
+    } */
+    </style>
+  </head>
+
+  <!-- <body onload="main()"> -->
+  <body>
+    <!-- the sun needs a nap. collect all the ice cubes to let the sun set!
+    move using WASD and QE or mouse to rotate. 
+    once you get close enough, click on each cube to collect it.  -->
+<!-- 
+    <p>
+    <div id="object2" style="color:black; position:relative;"></div>
+    </p> -->
+
+    <canvas id="webgl" style="position:absolute; left:0; top:0; width:100%; height:100%; display:block; z-index:0;"></canvas>
+    <div class="split" style="z-index:1; pointer-events:none;">
+      <div id="view1" tabindex="1" style="pointer-events:auto;"></div>
+      <div id="view2" tabindex="2" style="pointer-events:auto;"></div>
+    </div>
+
+    <div id="instructions-widget" style="
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 100;
+      font-family: sans-serif;
+    ">
+      <button id="instructions-toggle" onclick="toggleInstructions()" style="
+        background: rgba(0,0,0,0.6);
+        color: lightblue;
+        border: 1px solid rgba(255,255,255,0.3);
+        padding: 8px 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      ">
+        📋 Game Instructions ▾
+      </button>
+
+      <div id="instructions-panel" style="
+        display: none;
+        margin-top: 6px;
+        background: rgba(0,0,0,0.75);
+        color: lightblue;
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        padding: 14px 18px;
+        max-width: 300px;
+        font-size: 14px;
+        line-height: 1.7;
+      ">
+        <!-- <p style="margin: 0 0 8px; font-weight: bold;">☁️ Cloud Catcher!</p> -->
+        <p style="margin: 0 0 6px;">The sun needs a nap. Collect all the ice cubes to let the sun set!</p>
+        <ul style="margin: 0; padding-left: 18px;">
+          <li><b>W/A/S/D</b> — move forward/left/back/right</li>
+          <li><b>Q/E</b> — rotate camera left/right</li>
+          <li><b>Mouse drag</b> — look around</li>
+          <li>Get close enough to a cube, then <b>click</b> it to collect</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      function toggleInstructions() {
+        const panel = document.getElementById('instructions-panel');
+        panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+      }
+    </script>
+
+    <!-- wow explanation -->
+    <div id="wow-widget" style="
+    position: fixed;
+    top: 16px;
+    left: 200px;
+    z-index: 100;
+    font-family: sans-serif;
+    ">
+    <button id="wow-toggle" onclick="toggleWow()" style="
+      background: rgba(0,0,0,0.6);
+      color: pink;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    ">
+      💥 WOW info! ▾
+    </button>
+
+    <div id="wow-panel" style="
+      display: none;
+      margin-top: 6px;
+      background: rgba(0,0,0,0.75);
+      color: pink;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      padding: 14px 18px;
+      max-width: 300px;
+      font-size: 14px;
+      line-height: 1.7;
+    ">
+      <p style="margin: 0 0 6px;">I added a simple game to my three.js world, including and instructions dropdown and WASD + QE movement. </p>
+      <ul style="margin: 0; padding-left: 18px;">
+        Once the game has been won, I change the sky box and sphere textures, 
+        as well as swapping out the cat obj to a sleeping cat obj, so it can take a nap too!
+        I also implemented the addition camera view because it's cool to see and it helps with playing the game. 
+        You can adjust the three different lights as well!
+      </ul>
+    </div>
+    </div>
+
+    <script>
+    function toggleWow() {
+      const panel = document.getElementById('wow-panel');
+      panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+    }
+    </script>
+
+    <div id="object2" style="
+    position: fixed;
+    top: 16px;
+    left: 340px;
+    z-index: 100;
+    background: rgba(0,0,0,0.6);
+    color: lightyellow;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-family: sans-serif;
+    font-size: 14px;
+    pointer-events: none;
+    "></div>
+
+    <!-- <p id="object"> XXX </p>
+
+    <p>
+      <button type="button" id="normalOn">Normals ON</button>
+      <button type="button" id="normalOff">Normals OFF</button>
+    </p>
+
+    <p>
+      <button type="button" id="lightOn">Light ON</button>
+      <button type="button" id="lightOff">Light OFF</button>
+    </p>
+    <button type="button" id="spotlightOn">Spotlight ON</button>
+    <button type="button" id="spotlightOff">Spotlight OFF</button>
+
+    <p>
+      Light X <input type="range" min="-250" max="250" value="0" class="slider" id="lightSlideX">
+      Light Y <input type="range" min="-250" max="250" value="100" class="slider" id="lightSlideY">
+      Light Z <input type="range" min="-250" max="250" value="200" class="slider" id="lightSlideZ">
+    </p>
+
+    <p>
+      - lighting!
+    <p> 
+
+    </p>
+
+    <p>
+    Camera Angle (side to side) <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlide">
+    <p>
+    Camera Angle (up and down) <input type="range" min="-180" max="180" value="5" class="slider" id="angleSlideY">
+
+    <p>
+    Walk <input type="range" min="-45" max="45" value="0" class="slider" id="walkSlide">
+    <p>Walking Animation:
+      <button type="button" id="animateWalkOn">ON</button>
+      <button type="button" id="animateWalkOff">OFF</button>
+    
+    <p>
+      Neck Bottom <input type="range" min="-45" max="45" value="0" class="slider" id="neckBotSlide">
+    <p>
+      Neck Middle <input type="range" min="-45" max="45" value="0" class="slider" id="neckMidSlide">
+    <p>
+      Neck Top <input type="range" min="-45" max="45" value="0" class="slider" id="neckTopSlide"> -->
+    
+    <script src="lib/webgl-utils.js"></script>
+    <script src="lib/webgl-debug.js"></script>
+    <script src="lib/cuon-utils.js"></script>
+    <script src="lib/cuon-matrix.js"></script>
+    <!-- <script src="sky_for_160.jpg"></script> -->
+    <img src="sky_for_160.jpg" style="display:none;"></img>
+    <img src="jup_160.jpg" style="display:none;"></img>
+    <img src="paisley_160.jpg" style="display:none;"></img>
+    <img src="wall.jpg" style="display:none;"></img>
+    <img src="flower-1.jpg" style="display:none;"></img>
+    <img src="flower-2.jpg" style="display:none;"></img>
+    <img src="flower-3.jpg" style="display:none;"></img>
+    <img src="flower-4.jpg" style="display:none;"></img>
+    <img src="flower-5.jpg" style="display:none;"></img>
+    <img src="flower-6.jpg" style="display:none;"></img>
+
+    <img src="waterIce.png" style="display:none;"></img>
+
+    <img src="cat/12221_Cat_v1_l3.mtl" style="display:none;"></img>
+    <img src="cat/12221_Cat_v1_l3.obj" style="display:none;"></img>
+    <img src="cat/Cat_bump.jpg" style="display:none;"></img>
+    <img src="cat/Cat_diffuse.jpg" style="display:none;"></img>
+
+    <img src="cat_sleeping/model.mtl" style="display:none;"></img>
+    <img src="cat_sleeping/model.obj" style="display:none;"></img>
+    <img src="cat_sleeping/texture0.jpg" style="display:none;"></img>
+    <img src="cat_sleeping/texture1.jpg" style="display:none;"></img>
+    <img src="cat_sleeping/texture2.jpg" style="display:none;"></img>
+
+    <img src="checker.png" style="display:none;"></img>
+    <img src="trippyPattern.jpg" style="display:none;"></img>
+    <img src="sunSurfaceMaterial.jpg" style="display:none;"></img>
+    <img src="moon_texture.jpg" style="display:none;"></img>
+
+    <img src="QuickMapleOptimized.mtl" style="display:none;"></img>
+    <img src="QuickMapleOptimized.obj" style="display:none;"></img>
+
+    <!-- <script src="drawing.js"></script> -->
+    <script src="camera.js"></script>
+    <script src="cylinder.js"></script>
+    <script src="cube.js"></script>
+    <script src="sphere.js"></script>
+    <!-- <script src="splash.js"></script> -->
+    <!-- <script src="circle.js"></script> -->
+    <script src="triangle.js"></script>
+    <!-- <script src="points.js"></script> -->
+    <!-- <script src="asg5.js"></script> -->
+  </body>
+</html>
